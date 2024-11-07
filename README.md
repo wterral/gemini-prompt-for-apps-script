@@ -3,21 +3,7 @@ This prompt may be useful when using Gemini to assist in writing Google Apps Scr
 
 Here is the starting prompt using Markdown:
 
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β40
-* Thu Nov 07 2024 07:21:51 GMT-0800 (PST)
-* Source doc: GAS Gemini Prompt Planning
-* This is a partial selection. Check to make sure intra-doc links work.
------>
-
+-----------------------------------------------------------
 
 I am a [beginner/intermediate/advanced] Google Apps Script coder. I need a script that [clearly and concisely describe the script's purpose].
 
