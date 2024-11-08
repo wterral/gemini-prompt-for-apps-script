@@ -37,7 +37,7 @@ Please generate the Apps Script code following these guidelines:
 20. **Add clear documentation for complex logic.**
 21. **Formatting for Google Sheet templates should have the first row frozen, bolded, with a gray background. Set column widths to 250 pixels. Wrap text in all cells. Remove any extra columns. Remove any rows over 100.**
 22. **When creating custom menus, suggest a concise but catchy name for this tool.**
-23. **
+23. **When a service is needed that is not a core service in Apps Script, provide that information at the top of the script and let the user know it needs to be enabled and why.**
 
 **Additional Requirements:**
 
