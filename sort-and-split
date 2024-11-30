@@ -2,7 +2,7 @@
 
 <prompt1>Using Google Apps Script, create a script that will run on the current Google Spreadsheet sheet. The sheet contains columns for Email, First Name, Last Name, Teacher, and STATUS. When the script is run, create a new sheet for each TEACHER and populate that with the First Name, Last Name, and Email for each row containing that teacher's data. When the process is completed, write "DONE" to the STATUS column for that row. Use best practices for efficient code.</prompt1>
 
-// After many iterations and finally getting some working code, I asked Gemini how the prompt could have been worded to get to the end result more efficiently:
+// After many iterations and finally getting some working code, I asked Gemini how the prompt could have been worded to get to the end result more efficiently. NOTE - This prompt, while more complete, still resulted in code that did not work out of the box.
 
 <prompt2>
 
