@@ -38,5 +38,5 @@ This script automates a repetitive task, saving teachers time and reducing the r
 // To get the sample data for the starting sheet
 
 <sample-data>
-Provide a table of sample data for the starting sheet. Include 3 to 6 students for each of 5 teachers. 
+Provide a table of sample data for the starting sheet. Include 3 to 6 students for each of 5 teachers. Do not number the rows or columns. 
 </sample-data>
