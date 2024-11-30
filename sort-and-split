@@ -6,20 +6,32 @@
 
 <prompt2>
 
-Create a Google Apps Script to automate the following task on a Google Sheet:
+Prompt: Create a Google Apps Script to Automate Teacher Sheet Generation
+Objective: This script will automate the creation of individual teacher sheets from a master sheet containing student information.
 
-Identify Unique Teachers: Extract unique teacher names from column D.
-Create New Sheets: For each unique teacher, create a new sheet with the teacher's name.
-Populate New Sheets: Copy the corresponding student data (first name, last name, and email) from the original sheet to the newly created sheet.
-Format New Sheets: Freeze the first row and bold the header row.
-Update Original Sheet: Mark the processed rows in the original sheet's "STATUS" column (column E) as "DONE".
+Functionality:
 
+Create an Add-on Menu: Upon opening the spreadsheet, a menu item named "Create Teacher Sheets" will be added.
+Process Teacher Data: When the menu item is clicked, the script will:
+Extract teacher names from a specific column (e.g., column D) in the current sheet, starting from row 2 (excluding headers).
+Identify unique teacher names.
+Loop through each unique teacher name:
+Check if a sheet already exists with that name. If not, create a new sheet.
+Extract student data associated with that teacher (based on a matching criteria, e.g., column E) from the master sheet.
+Filter out empty rows from the extracted data.
+Create headers ("First Name", "Last Name", "Email") in the newly created teacher sheet.
+Populate the teacher sheet with the filtered student data (corresponding columns need to be identified, e.g., columns B, C, and A).
+Freeze the first row and format the header row (bold).
+Update a "STATUS" column (e.g., column E) in the original sheet with "DONE" for processed student rows.
+Logging: Throughout the script execution, informative messages will be logged using Logger.log for debugging and tracking progress.
 Additional Considerations:
 
-Empty Rows: Remove any empty rows from the new sheets.
-Error Handling: Implement error handling to gracefully handle situations like empty teacher names or sheet creation failures.
-Logging: Include detailed logging to track the script's execution and debug any issues.
-User Interface: Create a custom menu to trigger the script from within the spreadsheet.
+Specify the column number(s) containing teacher names and student data in the master sheet.
+Adjust the script to handle scenarios where sheets might already exist with the same names as teachers. (e.g., append a number or prompt the user for confirmation)
+Consider adding error handling for situations where unexpected data formats are encountered.
+Benefits:
+
+This script automates a repetitive task, saving teachers time and reducing the risk of errors in manually creating and populating individual student sheets.
 
 </prompt2>
 
