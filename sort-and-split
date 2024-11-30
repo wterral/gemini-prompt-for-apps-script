@@ -40,3 +40,78 @@ This script automates a repetitive task, saving teachers time and reducing the r
 <sample-data>
 Provide a table of sample data for the starting sheet. Include 3 to 6 students for each of 5 teachers. Do not number the rows or columns. 
 </sample-data>
+
+
+
+
+
+Here is the code that worked:
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+      .createAddonMenu()
+      .addItem('Create Teacher Sheets', 'createTeacherSheets')
+      .addToUi();
+}
+
+function createTeacherSheets() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.getActiveSheet();
+
+  Logger.log("Starting script execution.");
+
+  const teacherNames = sheet.getRange(2, 4, sheet.getLastRow() - 1, 1).getValues().flat().filter(name => name);
+
+  if (teacherNames.length === 0) {
+    Logger.log("No teacher names found. Please ensure the 'Teacher' column is populated correctly.");
+    SpreadsheetApp.getUi().alert('No Teacher Names Found', 'Please ensure the "Teacher" column is populated correctly.', SpreadsheetApp.AlertButton.OK);
+    return;
+  }
+
+  const uniqueTeacherNames = [...new Set(teacherNames)];
+
+  Logger.log("Found unique teacher names:", uniqueTeacherNames);
+
+  uniqueTeacherNames.forEach(teacherName => {
+    Logger.log("Processing teacher: " + teacherName);
+
+    // Ensure the sheet doesn't already exist
+    let newSheet = spreadsheet.getSheetByName(teacherName);
+    if (!newSheet) {
+      newSheet = spreadsheet.insertSheet(teacherName);
+      Logger.log("Created new sheet: " + teacherName);
+    } else {
+      Logger.log("Sheet " + teacherName + " already exists.");
+    }
+
+    const teacherRows = sheet.getRange(2, 1, sheet.getLastRow() - 1, 5).getValues().filter(row => row[3] === teacherName);
+    Logger.log("Found " + teacherRows.length + " rows for teacher " + teacherName);
+
+    // Filter out empty rows
+    const filteredRows = teacherRows.filter(row => row.some(cell => cell !== ""));
+
+    newSheet.getRange(1, 1).setValue("First Name");
+    newSheet.getRange(1, 2).setValue("Last Name");
+    newSheet.getRange(1, 3).setValue("Email");
+
+    newSheet.getRange(2, 1, filteredRows.length, 3).setValues(filteredRows.map(row => [row[1], row[2], row[0]]));
+    Logger.log("Populated new sheet with data for " + teacherName);
+
+    // Freeze first row and format header row
+    newSheet.setFrozenRows(1);
+    newSheet.getRange(1, 1, 1, 3).setFontWeight("bold");
+
+    // Update the STATUS column in the original sheet for processed rows
+    const lastRow = sheet.getLastRow();
+    for (let i = 2; i <= lastRow; i++) { // Start from row 2 to skip header row
+      const row = sheet.getRange(i, 1, 1, 5).getValues()[0];
+      if (row[3] === teacherName) {
+        sheet.getRange(i, 5).setValue("DONE");
+      }
+    }
+
+    Logger.log("Updated STATUS column for teacher " + teacherName);
+  });
+
+  Logger.log("Script execution completed.");
+}
